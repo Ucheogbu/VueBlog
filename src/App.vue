@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div >
+    <component @changeComponent="changeComponent($event)" :is="componentID"></component>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import addBlog from './components/addBlog'
+import showBlog from './components/showBlogs'
+import {bus} from './main'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      title: 'Blogger',
+      componentID: 'addBlog'
+      
+    }
+  },
   components: {
-    HelloWorld
+    'addBlog':addBlog,
+    'showBlog':showBlog,
+  },
+  methods: {
+    updateTitle(title){
+      this.title = title
+    }
+  },
+  created(){
+    bus.$on('changeComponent', (component) => {
+      this.componentID = component
+    })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+
 </style>
