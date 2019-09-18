@@ -1,5 +1,8 @@
+import ShowBlogs from './components/showBlogs'
+import AddBlogs from './components/showBlogs'
+
 export default [
-    { path: '/', component: 'ShowBlogs' },
-    { path: '/add', component: 'ShowBlogs' },
+    { path: '/blogs', component: ShowBlogs },
+    { path: '/add', component: AddBlogs },
 
 ]

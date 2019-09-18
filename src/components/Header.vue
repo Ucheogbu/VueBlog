@@ -33,22 +33,22 @@
           </form>
       </div>
     </nav> -->
-    <div class="nav-wrapper">
+    <div class="wrapper">
+      <div class="nav-wrapper">
       <div class="nav">
       <div class="logo"><a href=""><img src="../../public/img/logo.png" alt="E-vote"></a></div>
       <ul>
-        <li v-if="showBlogtoggle"><a href="#">Blogs</a></li>
+        <li v-if="showBlogtoggle"><a href="" @click.prevent="showBlog">Blogs</a></li>
+        <li v-if="addBlogtoggle"><a href="" @click.prevent="addBlog">Add Blog</a></li>
         
       </ul>
       <form v-if="showSearch" class="form">
-          <input class="form-control" type="text" placeholder="Search">
+          <input class="" type="text" placeholder="Search">
       </form>
     </div>
     </div>
-    
-
-    <!-- <h1 @click="changTitle">{{title}}</h1> -->
-  </div>
+    </div>
+      </div>
 </template>
 
 <script>
@@ -63,39 +63,47 @@ export default {
   props: {
     title: String,
     showSearch: Boolean,
-    showBlogtoggle: "false"
+    showBlogtoggle: Boolean,
+    addBlogtoggle: Boolean,
   },
   methods: {
-    changTitle(){
-      if (this.title === 'E-vote'){
-        this.title = 'Voting App'
-        // this.$emit('changeTitle', 'Voting App')
-        bus.$emit('changeTitle', 'Voting App')
-      }else{
-        this.title = 'E-vote'
-        // this.$emit('changeTitle', 'E-vote')
-        bus.$emit('changeTitle', 'E-vote')
-      }
-    }
+
+    showBlog(){
+      bus.$emit('changeComponent', 'showBlog')
+    },
+    addBlog(){
+      bus.$emit('changeComponent', 'addBlog')
+    },
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.wrapper{
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
 .nav {
   display: flex;
-  height: 15vh;
+  height: 10vh;
   align-items: center;
-  margin: 0px 50px 0px 50px;
+  margin: 0px 50px 0px 50px; 
 }
 .nav-wrapper form input{
   width: 300px;
-  background-color: transparent;
-  color: white;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  height: 20px;
+  border: 2px solid #F00;
   border-radius: 5px;
   padding: 15px;
   box-sizing: border-box;
+}
+.nav-wrapper form input :active{
+  box-shadow: 4 2 4 #f05252;
+
 }
 h3 {
   margin: 40px 0 0;
@@ -113,10 +121,11 @@ h1 {
 }
 .nav ul li {
   display: inline-block;
+  line-height: 10px;
   margin: 0 10px;
 }
 .nav a {
-  color: #42b983;
+  color: #000000;
   text-decoration: none;
 }
 .logo {

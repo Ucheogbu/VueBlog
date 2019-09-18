@@ -43,6 +43,11 @@ export default {
 </script>
 
 <style scoped>
+.ck-editor__editable {
+    min-height: 500px;
+    max-width: 500px;
+   }
+.ck-content { height:500px;max-width: 500px;}
 .form-wrapper {
     display: flex;
     flex-direction: column;
@@ -53,6 +58,7 @@ export default {
     flex: 1;
 }
 .form-header {
+    color: #fff;
     flex: 1;
 }
 .useful-links {
@@ -91,7 +97,7 @@ export default {
     width: 100px;
     height: 50px;
     color: rgb(0, 0, 0);
-    background-color: orangered;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: none;
 }
